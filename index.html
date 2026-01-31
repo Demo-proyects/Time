@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Omega Moonwatch</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+  <style>
+    :root {
+      --brand-red: #e4002b;
+      --brand-yellow: #c49e59;
+    }
+    
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    .animate-spin-slow {
+      animation: spin-slow 20s linear infinite;
+    }
+
+    * {
+  box-sizing: border-box;
+}
+
+body, html {
+  overflow-x: hidden;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+  </style>
+</head>
+<body class="bg-black text-white font-sans">
+  
+  <!-- HERO SECTION -->
+  <div class="h-screen w-full relative overflow-hidden flex flex-col">
+    
+    <!-- FONDO MÓVIL -->
+    <div class="lg:hidden">
+      <div 
+        id="mobileVideo"
+        class="absolute inset-0 z-0 transition-opacity"
+        style="background-image: url(img/reloj-mobil-animado.webp); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 1;">
+      </div>
+      
+      <div 
+        id="mobileStaticBg"
+        class="absolute inset-0 z-0"
+        style="background-image: url(img/fondo-mobil.png); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 0; display: none;">
+      </div>
+    </div>
+
+    <!-- FONDO PC -->
+    <div class="hidden lg:block">
+      <div 
+        id="pcVideo"
+        class="absolute inset-0 z-0 transition-opacity"
+        style="background-image: url(img/reloj-pc-animado.webp); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 1;">
+      </div>
+      
+      <div 
+        id="pcStaticBg"
+        class="absolute inset-0 z-0"
+        style="background-image: url(img/fondo.png); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 0; display: none;">
+      </div>
+    </div>
+
+    <!-- DISEÑO PC -->
+    <div class="hidden lg:contents">
+      <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+        <span class="text-[20vw] font-bold text-white/[0.07] uppercase tracking-tighter leading-none select-none"></span>
+      </div>
+
+      <div class="absolute left-0 bottom-10 flex-col items-center gap-10 z-50 w-20 flex">
+        <span 
+          onclick="handleInactiveLinkClick(event)"
+          class="rotate-[-90deg] text-[10px] font-bold tracking-[0.4em] text-gray-500 cursor-pointer hover:text-white transition-colors">
+          PL
+        </span>
+        <div class="flex flex-col items-center gap-2">
+          <span class="rotate-[-90deg] text-[10px] font-bold tracking-[0.4em] text-white pb-1" style="border-bottom: 2px solid var(--brand-red)">DE</span>
+        </div>
+        <div class="w-[1px] h-24 bg-white/10 mt-4"></div>
+      </div>
+
+      <header class="relative z-50 flex justify-between items-start">
+        <div class="w-15 h-14 flex items-center justify-center" style="background-color: var(--brand-red)">
+          <span class="text-4xl font-serif">Ω</span>
+        </div>
+        
+        <nav class="flex gap-12 p-12 text-[11px] font-bold tracking-[0.3em] uppercase text-gray-200">
+          <a href="#" onclick="handleInactiveLinkClick(event)" class="hover:text-white transition-all">Collection</a>
+          <a href="#" onclick="handleInactiveLinkClick(event)" class="hover:text-white transition-all">Heritage</a>
+          <a href="#" onclick="handleInactiveLinkClick(event)" class="hover:text-white transition-all">Apollo</a>
+          <a href="#" onclick="handleInactiveLinkClick(event)" class="hover:text-white transition-all">Production</a>
+          <button onclick="handleMenuClick(event)" class="flex flex-col gap-1.5 ml-4 justify-center items-end group transition-colors">
+            <div class="w-6 h-[2px] bg-white transition-colors"></div>
+            <div class="w-4 h-[2px] bg-white transition-colors"></div>
+          </button>
+        </nav>
+      </header>
+
+      <main class="flex-1 flex items-center px-24 relative z-10">
+        <div class="grid grid-cols-12 w-full items-center gap-0">
+          <div class="col-span-8 text-left mb-30">
+            <span class="text-[12px] tracking-[0.7em] text-gray-400 uppercase font-bold mb-4 block">
+              Speedmaster
+            </span>
+            <h1 class="text-7xl font-bold leading-[0.8] mb-8 tracking-tighter">
+              Moonwatch
+            </h1>
+            <p class="text-gray-400 text-[14px] leading-relaxed max-w-[340px] mb-10 font-semibold">
+              The Apollo 8 astronauts were the first people to see the dark side of the moon with their own eyes. 
+              The black ceramic Co-Axial Speedmaster salutes their pioneering spirit and pays homage to the 
+              Speedmaster Professional chronographs worn by every Apollo astronaut.
+            </p>
+            <button 
+              onclick="handleReadMoreClick(event)"
+              class="px-6 py-4 flex items-center gap-6 text-[9px] font-bold tracking-[0.2em] uppercase cursor-pointer transition-all"
+              style="background-color: var(--brand-red)"
+              onmouseenter="this.style.backgroundColor='#c4001b'"
+              onmouseleave="this.style.backgroundColor='var(--brand-red)'">
+              Read More
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+          </div>
+          <div class="col-span-4 flex justify-center items-center"></div>
+        </div>
+      </main>
+
+      <div class="absolute bottom-[0px] right-10 flex flex-col items-end z-40 gap-10">
+        <div class="text-right mb-10">
+          <span class="text-[10px] tracking-[0.3em] text-gray-400 uppercase block mb-1 font-bold">Price</span>
+          <span class="text-5xl font-light tracking-tighter">9900$</span>
+        </div>
+        
+        <a 
+          href="https://wa.me/1234567890" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="w-28 h-40 flex flex-col justify-center items-center group cursor-pointer shadow-2xl transition-all"
+          style="background-color: var(--brand-red)"
+          onmouseenter="this.style.backgroundColor='#c4001b'"
+          onmouseleave="this.style.backgroundColor='var(--brand-red)'">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mb-2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          <span class="text-[11px] font-bold uppercase tracking-[0.2em]">Contact</span>
+          <span class="text-[11px] font-bold uppercase tracking-[0.2em] mb-3">Us</span>
+          <div class="w-12 h-[1px] bg-white/30 my-2"></div>
+          <span class="text-[9px] opacity-40 font-bold">WhatsApp</span>
+        </a>
+      </div>
+
+      <div class="absolute bottom-0 right-0 flex justify-end items-end pb-0 z-50">
+        <div class="bg-white/3 backdrop-blur-xl border border-white/5 py-4 px-4 flex gap-10">
+          <div class="flex items-center gap-5">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-gray-500"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>
+            <div class="text-left">
+              <p class="text-sm font-bold tracking-tight">Shaphire</p>
+              <p class="text-[10px] text-gray-500 uppercase tracking-[0.2em] font-bold">Glass material</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-5 border-l border-white/10 pl-16">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-gray-500"><circle cx="12" cy="12" r="7"></circle><polyline points="12 9 12 12 13.5 13.5"></polyline><path d="M16.51 17.35l-.35 3.83a2 2 0 0 1-2 1.82H9.83a2 2 0 0 1-2-1.82l-.35-3.83m.01-10.7l.35-3.83A2 2 0 0 1 9.83 1h4.35a2 2 0 0 1 2 1.82l.35 3.83"></path></svg>
+            <div class="text-left">
+              <p class="text-sm font-bold tracking-tight">Ceramic</p>
+              <p class="text-[10px] text-gray-500 uppercase tracking-[0.2em] font-bold">Case material</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-5 border-l border-white/10 pl-16">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-gray-500"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path></svg>
+            <div class="text-left">
+              <p class="text-sm font-bold tracking-tight">5 bar</p>
+              <p class="text-[10px] text-gray-500 uppercase tracking-[0.2em] font-bold">Water resistance</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-5 border-l border-white/10 pl-16">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-gray-500"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="2"></circle><path d="M12 2v4"></path><path d="M12 18v4"></path><path d="m4.93 4.93 2.83 2.83"></path><path d="m16.24 16.24 2.83 2.83"></path><path d="M2 12h4"></path><path d="M18 12h4"></path><path d="m4.93 19.07 2.83-2.83"></path><path d="m16.24 7.76 2.83-2.83"></path></svg>
+            <div class="text-left">
+              <p class="text-sm font-bold tracking-tight">Caliber 9300</p>
+              <p class="text-[10px] text-gray-500 uppercase tracking-[0.2em] font-bold">Automatic movement</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DISEÑO MÓVIL -->
+    <div class="lg:hidden flex flex-col h-full relative">
+      <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 z-0"></div>
+
+      <div class="relative z-50 flex justify-between items-center p-6">
+        <div class="flex items-center gap-3">
+          <div class="text-4xl" style="font-family: Didot, serif">Ω</div>
+          <div class="flex flex-col">
+            <span class="text-sm font-light tracking-[0.2em]" style="font-family: Cinzel, serif">OMEGA</span>
+            <span class="text-[7px] tracking-[0.3em] text-gray-500">GENÈVE</span>
+          </div>
+        </div>
+        
+        <div class="flex items-center gap-4">
+          <a 
+            href="https://instagram.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="text-white transition-colors"
+            onmouseenter="this.style.color='var(--brand-red)'"
+            onmouseleave="this.style.color='white'">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <button onclick="handleMenuClick(event)" class="text-white transition-colors">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="flex-1 flex flex-col justify-center p-6 relative z-10">
+        <div class="flex-1 flex items-center">
+          <div>
+            <h1 class="text-7xl font-bold leading-[0.85] tracking-tighter mb-3">
+              Moon<br/>watch
+            </h1>
+            <div class="w-20 h-[2px]" style="background-color: var(--brand-red)"></div>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <div class="flex items-end justify-between">
+            <div>
+              <span class="text-[8px] tracking-[0.5em] text-gray-500 uppercase block mb-1">
+                Speedmaster Collection
+              </span>
+              <span class="text-[9px] tracking-[0.3em] text-gray-400 uppercase">
+                Limited Edition
+              </span>
+            </div>
+            <div class="text-right">
+              <div class="text-4xl font-light tracking-tight">$9900</div>
+              <div class="text-xs text-gray-500">USD</div>
+            </div>
+          </div>
+
+          <button 
+            onclick="handleDiscoverClick(event)"
+            class="w-full py-5 text-[10px] font-bold tracking-[0.3em] uppercase flex items-center justify-between px-6"
+            style="background-color: var(--brand-red)">
+            <span>Discover More</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+
+          <div class="flex items-center justify-center gap-3 py-2 opacity-40">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="animate-bounce"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+            <span class="text-[8px] tracking-[0.3em] uppercase">Swipe Up</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="relative w-full min-h-screen bg-[#0a0a0a] overflow-hidden font-sans text-gray-300 flex flex-col items-center pt-8 pb-20">
+  
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#1f1f1f] via-[#0a0a0a] to-black z-0"></div>
+
+  <div class="hidden lg:flex relative z-10 w-full max-w-7xl mx-auto px-4 flex-col items-center">
+    
+    <div class="flex flex-col items-center mb-8">
+      <div class="text-white mb-1">
+        <svg class="w-8 h-8 mx-auto text-gray-200" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z"/>
+        </svg>
+      </div>
+      <h2 class="text-3xl font-bold tracking-[0.2em] text-white">CARREN</h2>
+    </div>
+
+    <nav class="w-full border-b border-gray-800 border-opacity-50 mb-16">
+      <ul class="flex justify-center items-end gap-0 text-[10px] sm:text-xs font-semibold tracking-wider text-gray-400">
+        <li class="px-6 py-3 cursor-pointer hover:text-white transition-colors">ANASAYFA</li>
+        <li class="px-6 py-3 cursor-pointer hover:text-white transition-colors">HAKKIMIZDA</li>
+        <li class="px-6 py-3 cursor-pointer hover:text-white transition-colors">YENI BAYAN MODELLER</li>
+        <li class="relative">
+          <div class="bg-gradient-to-b from-red-800 to-red-900 text-white px-6 py-3 shadow-[0_0_15px_rgba(220,38,38,0.3)] clip-path-polygon">
+            YENI ERKEK MODELLER
+          </div>
+          <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-red-900"></div>
+        </li>
+        <li class="px-6 py-3 cursor-pointer hover:text-white transition-colors">SAATLER</li>
+        <li class="px-6 py-3 cursor-pointer hover:text-white transition-colors">GARANTI</li>
+        <li class="px-6 py-3 cursor-pointer hover:text-white transition-colors">TANITIM FILMI</li>
+        <li class="px-6 py-3 cursor-pointer hover:text-white transition-colors">ILETISIM</li>
+      </ul>
+    </nav>
+
+    <div class="flex items-center justify-center gap-4 sm:gap-8 w-full">
+      <button class="group p-2 focus:outline-none">
+        <svg class="w-12 h-12 text-red-700 group-hover:text-red-500 transition-colors filter drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </button>
+
+      <div class="flex items-end justify-center gap-6 sm:gap-10">
+        <div class="flex flex-col items-center opacity-60 transform scale-90 transition-all duration-300">
+          <img src="reloges/omega-seamaster-aqua-terra-150m-co-axial-master-chronometer- (1).png" alt="PRS 300" class="h-40 object-contain drop-shadow-xl">
+          <span class="mt-4 text-[10px] tracking-widest text-gray-500 font-bold uppercase">PRS 300</span>
+        </div>
+
+        <div class="relative flex flex-col items-center transform scale-110 z-20 mx-4">
+          <div class="absolute -inset-4 border border-red-600 rounded-xl bg-gradient-to-b from-transparent to-red-900/10 pointer-events-none"></div>
+          <img src="reloges/omega-seamaster-diver-300m-co-axial-master-chronometer-42-mm.png" alt="PRS 516" class="h-48 object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]">
+          <span class="mt-6 text-[10px] tracking-widest text-red-600 font-bold uppercase">PRS 516 AUTOMATIC</span>
+        </div>
+
+        <div class="flex flex-col items-center opacity-60 transform scale-90 transition-all duration-300">
+          <img src="reloges/omega-seamaster-aqua-terra-150m-co-axial-master-chronometer- (2).png" alt="PRS 200" class="h-40 object-contain drop-shadow-xl">
+          <span class="mt-4 text-[10px] tracking-widest text-gray-500 font-bold uppercase">PRS 200</span>
+        </div>
+
+        <div class="flex flex-col items-center opacity-60 transform scale-90 transition-all duration-300 hidden md:flex">
+          <img src="reloges/omega-seamaster-planet-ocean-600m-co-axial-master-chronomete (1).png" alt="Seastar" class="h-40 object-contain drop-shadow-xl">
+          <span class="mt-4 text-[10px] tracking-widest text-gray-500 font-bold uppercase">SEASTAR 1000</span>
+        </div>
+      </div>
+
+      <button class="group p-2 focus:outline-none">
+        <svg class="w-12 h-12 text-red-700 group-hover:text-red-500 transition-colors filter drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex justify-center items-center gap-3 mt-12">
+      <button class="w-3 h-3 rounded-full bg-[#1a1a1a] hover:bg-gray-600 transition-colors"></button>
+      <button class="w-3 h-3 rounded-full bg-[#1a1a1a] hover:bg-gray-600 transition-colors"></button>
+      <button class="w-3 h-3 rounded-full bg-red-800 shadow-[0_0_8px_rgba(220,38,38,0.5)]"></button>
+      <button class="w-3 h-3 rounded-full bg-[#1a1a1a] hover:bg-gray-600 transition-colors"></button>
+      <button class="w-3 h-3 rounded-full bg-[#1a1a1a] hover:bg-gray-600 transition-colors"></button>
+    </div>
+  </div>
+
+  <div class="w-full flex flex-col items-center justify-center pt-6 pb-2 px-6 z-30 text-center">
+        <img src="img/logo.png" class="h-8 object-contain mb-3 drop-shadow-md">
+        
+        <h2 class="text-lg font-bold text-white tracking-[0.2em] uppercase font-serif">MENS COLLECTION</h2>
+        <div class="w-8 h-0.5 bg-red-800 mx-auto my-2"></div>
+        <p class="text-[14px] text-gray-400 max-w-[280px] leading-relaxed">
+            Explora la nueva serie de precisión y diseño exclusivo.
+        </p>
+    </div>
+
+  <div class="lg:hidden w-full h-full flex flex-col relative z-20">
+    
+    <div class="absolute top-6 left-0 w-full text-center z-20 pointer-events-none">
+        <h2 class="text-4xl font-bold text-white/5 tracking-[0.4em] uppercase">CARREN</h2>
+    </div>
+
+    <div class="flex-1 flex flex-col items-center justify-center relative px-4 min-h-[60vh]">
+        <div class="absolute w-64 h-64 border border-red-900/30 rounded-full animate-[spin_10s_linear_infinite]"></div>
+        <div class="absolute w-56 h-56 border border-white/5 rounded-full"></div>
+        
+        <img src="reloges/omega-seamaster-diver-300m-co-axial-master-chronometer-42-mm.png" class="h-[35vh] object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.7)] z-10">
+        
+        <div class="text-center mt-8 z-10">
+            <h3 class="text-3xl text-white font-bold font-serif">PRS 516</h3>
+            <p class="text-red-500 text-xs font-bold tracking-[0.3em] uppercase mt-2">Sport Collection</p>
+            <p class="text-gray-500 text-xs mt-4 max-w-xs mx-auto">Cristal de zafiro irrayable con revestimiento antirreflejos.</p>
+        </div>
+    </div>
+
+    <div class="w-full bg-black py-6 mt-auto">
+    <div class="flex items-center gap-4 px-6 overflow-x-auto no-scrollbar">
+
+<div class="flex-shrink-0 w-20 h-20 bg-gradient-to-b from-[#1a1a1a] to-black rounded-full border-[0.5px] border-white/20 flex items-center justify-center relative shadow-none">
+    <div class="absolute inset-[2px] rounded-full border border-red-600/50"></div>
+    <img src="reloges/omega-speedmaster-dark-side-of-the-moon-co-axial-master-chro (4).png" class="h-14 w-14 object-contain">
+</div>
+        <div class="flex-shrink-0 w-20 h-20 relative p-2">
+            <div class="absolute inset-0 border-t-2 border-l-2 border-red-600 w-4 h-4 top-0 left-0"></div>
+            <div class="absolute inset-0 border-b-2 border-r-2 border-red-600 w-4 h-4 bottom-0 right-0"></div>
+            <img src="reloges/omega-seamaster-planet-ocean-600m-co-axial-master-chronomete (3).png" class="h-full object-contain">
+        </div>
+        <div class="flex-shrink-0 w-20 h-20 p-2 border border-white/5 rounded-md">
+            <img src="reloges/omega-seamaster-planet-ocean-600m-co-axial-master-chronomete (6).png" class="h-full object-contain">
+        </div>
+        <div class="flex-shrink-0 w-20 h-20 p-2 border border-white/5 rounded-md">
+            <img src="reloges/omega-seamaster-planet-ocean-600m-co-axial-master-chronomete (7).png" class="h-full object-contain">
+        </div>
+    </div>
+</div>
+  </div>
+
+</section>
+
+  <!-- 1. About Section -->
+  <section class="bg-black py-24 px-6 lg:px-24">
+    <div class="container mx-auto">
+      <div class="flex flex-col lg:flex-row items-center gap-16">
+        <div class="lg:w-1/2 relative">
+          <img src="img/ab-1.png" alt="Watch Maker" class="relative z-10 rounded-sm transition-all duration-500" />
+          <img src="img/about-shape.png" alt="" class="absolute -bottom-10 -right-10 opacity-20 animate-spin-slow" />
+        </div>
+        <div class="lg:w-1/2">
+          <span class="text-[10px] tracking-[0.4em] uppercase font-bold block mb-4" style="color: var(--brand-yellow)">Our Expertise</span>
+          <h2 class="text-4xl lg:text-5xl font-bold mb-6 tracking-tight">Expert Watch Creation and Repair Services</h2>
+          <p class="text-gray-400 leading-relaxed mb-8">
+            We are happy to introduce the new Lawson collection, featuring three quartz models designed with simplicity and elegance in mind. They come in different sizes and colors, compatible with any watch from the Lawson series.
+          </p>
+          <a href="#" class="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase pb-1 transition-colors" style="border-bottom: 1px solid var(--brand-yellow)" onmouseenter="this.style.color='var(--brand-yellow)'" onmouseleave="this.style.color='white'">
+            Learn More 
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+   <!-- VERSIÓN 1 EQUILIBRADA -->
+<section class="bg-zinc-950 py-24 px-6 lg:px-24 border-y border-white/5">
+  <div class="container mx-auto max-w-7xl">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <h2 class="text-4xl lg:text-5xl font-bold mb-6 tracking-tight">Omega Collection</h2>
+      <p class="text-gray-400">
+        Discover our curated selection of exceptional timepieces, each representing the pinnacle of Swiss watchmaking excellence.
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="watchGrid1"></div>
+  </div>
+</section>
+
+<style>
+  .watch-v1 {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 1.5rem;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  .watch-v1::before,
+  .watch-v1::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--brand-yellow);
+    opacity: 0;
+    transition: all 0.4s ease;
+    z-index: 10;
+  }
+  
+  .watch-v1::before {
+    top: -1px;
+    left: -1px;
+    border-right: none;
+    border-bottom: none;
+  }
+  
+  .watch-v1::after {
+    bottom: -1px;
+    right: -1px;
+    border-left: none;
+    border-top: none;
+  }
+  
+  .watch-v1:hover {
+    border-color: rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.04);
+  }
+  
+  .watch-v1:hover::before,
+  .watch-v1:hover::after {
+    opacity: 1;
+  }
+
+  .spec-line {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 11px;
+  }
+
+  .spec-line:last-child {
+    border-bottom: none;
+  }
+</style>
+
+<script>
+  const watches1 = [
+    {img: "reloges/omega-seamaster-aqua-terra-150m-co-axial-master-chronometer- (1).png", name: "SEAMASTER AQUA TERRA", caliber: "8900", water: "150m", price: "$6,200"},
+    {img: "reloges/omega-speedmaster-dark-side-of-the-moon-co-axial-master-chro (1).png", name: "SPEEDMASTER DARK SIDE", caliber: "9300", water: "50m", price: "$12,100"},
+    {img: "reloges/omega-seamaster-diver-300m-co-axial-master-chronometer-42-mm.png", name: "SEAMASTER DIVER 300M", caliber: "8800", water: "300m", price: "$5,400"},
+    {img: "reloges/omega-seamaster-planet-ocean-600m-co-axial-master-chronomete (1).png", name: "PLANET OCEAN 600M", caliber: "8900", water: "600m", price: "$8,900"},
+    {img: "reloges/omega-speedmaster-38-co-axial-chronometer-chronograph-38-mm-.png", name: "SPEEDMASTER 38", caliber: "3330", water: "100m", price: "$4,850"},
+    {img: "reloges/omega-seamaster-railmaster-co-axial-master-chronometer-38-mm.png", name: "SEAMASTER RAILMASTER", caliber: "8806", water: "150m", price: "$5,600"},
+    {img: "reloges/omega-seamaster-aqua-terra-shades-co-axial-master-chronomete.png", name: "AQUA TERRA SHADES", caliber: "8900", water: "150m", price: "$6,500"},
+    {img: "reloges/omega-speedmaster-moonwatch-professional-co-axial-master-chr.png", name: "MOONWATCH PROFESSIONAL", caliber: "3861", water: "50m", price: "$7,100"}
+  ];
+
+  document.getElementById('watchGrid1').innerHTML = watches1.map(w => `
+    <div class="watch-v1 group">
+      <div class="mb-5 flex items-center justify-center h-48 bg-gradient-to-b from-white/5 to-transparent">
+        <img src="${w.img}" alt="${w.name}" class="h-44 object-contain group-hover:scale-110 transition-transform duration-500" />
+      </div>
+      <div class="text-center mb-4">
+        <h4 class="text-sm font-bold tracking-wider mb-3">${w.name}</h4>
+        <p class="font-bold text-xl" style="color: var(--brand-yellow)">${w.price}</p>
+      </div>
+      <div class="mb-4">
+        <div class="spec-line">
+          <span class="text-gray-500">Caliber</span>
+          <span class="font-semibold">${w.caliber}</span>
+        </div>
+        <div class="spec-line">
+          <span class="text-gray-500">Water Resistance</span>
+          <span class="font-semibold">${w.water}</span>
+        </div>
+      </div>
+      <button class="w-full border border-white/20 hover:bg-white hover:text-black text-[10px] font-bold tracking-[0.2em] py-2.5 uppercase transition-all">
+        View Details
+      </button>
+    </div>
+  `).join('');
+</script>
+
+  <!-- 4. Craftsmanship Section -->
+  <section class="relative min-h-screen bg-black py-24">
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="img/ab-1.png" 
+        alt="Craftsmanship" 
+        class="w-full h-full object-cover opacity-30"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black"></div>
+    </div>
+
+    <div class="container mx-auto px-6 lg:px-24 relative z-10">
+      <div class="max-w-4xl mx-auto text-center mb-20">
+        <span class="text-[10px] tracking-[0.5em] uppercase font-bold block mb-6" style="color: #e24848">
+  The Art of Watchmaking
+</span>
+        <h2 class="text-5xl lg:text-6xl font-bold mb-8 tracking-tight">
+          Craftsmanship Beyond<br/>Time
+        </h2>
+        <p class="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto">
+          Every OMEGA timepiece is a masterpiece of precision engineering, combining centuries of Swiss 
+          watchmaking tradition with cutting-edge innovation. Our master craftsmen dedicate countless hours 
+          to perfecting every detail.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">
+        <div class="text-center p-8 bg-white/5 backdrop-blur-sm border border-white/10">
+          <div class="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center" style="background-color: rgba(228, 0, 43, 0.2)">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--brand-red)"><circle cx="12" cy="12" r="7"></circle><polyline points="12 9 12 12 13.5 13.5"></polyline><path d="M16.51 17.35l-.35 3.83a2 2 0 0 1-2 1.82H9.83a2 2 0 0 1-2-1.82l-.35-3.83m.01-10.7l.35-3.83A2 2 0 0 1 9.83 1h4.35a2 2 0 0 1 2 1.82l.35 3.83"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Master Chronometer</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Certified at the industry's highest standard of precision, performance and magnetic resistance.
+          </p>
+        </div>
+
+        <div class="text-center p-8 bg-white/5 backdrop-blur-sm border border-white/10">
+          <div class="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center" style="background-color: rgba(228, 0, 43, 0.2)">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--brand-red)"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Co-Axial Escapement</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Revolutionary technology that reduces friction and maintains precision for longer periods.
+          </p>
+        </div>
+
+        <div class="text-center p-8 bg-white/5 backdrop-blur-sm border border-white/10">
+          <div class="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center" style="background-color: rgba(228, 0, 43, 0.2)">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--brand-red)"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Water Resistance</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Engineered to withstand the depths, from 50 meters to 600 meters below the surface.
+          </p>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button class="px-10 py-5 text-[10px] font-bold tracking-[0.3em] uppercase transition-all inline-flex items-center gap-4" style="background-color: var(--brand-red)" onmouseenter="this.style.backgroundColor='rgba(228, 0, 43, 0.8)'" onmouseleave="this.style.backgroundColor='var(--brand-red)'">
+          Discover Our Heritage
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Blog Section -->
+  <section class="bg-black py-24 px-6 lg:px-24">
+    <div class="container mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl lg:text-5xl font-bold mb-4">From The Blog</h2>
+        <p class="text-gray-400 max-w-2xl mx-auto">Latest news and insights from the world of horology.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Blog 1 -->
+        <article class="group cursor-pointer">
+          <div class="overflow-hidden mb-6 border border-white/10">
+            <img src="img/bl-1.png" alt="Digital jumping-seconds" class="w-full h-64 object-cover group-hover:scale-105 transition-all duration-700" />
+          </div>
+          <div class="flex items-center gap-4 text-xs text-gray-500 mb-3 uppercase tracking-widest">
+            <span style="color: var(--brand-red)">Omega</span>
+            <span>Oct 22, 2025</span>
+          </div>
+          <h4 class="text-xl font-bold mb-4 transition-colors" onmouseenter="this.style.color='var(--brand-red)'" onmouseleave="this.style.color='white'">Digital jumping-seconds</h4>
+          <span class="text-[10px] font-bold tracking-[0.2em] uppercase border-b border-white/20 pb-1">Read Article</span>
+        </article>
+
+        <!-- Blog 2 -->
+        <article class="group cursor-pointer">
+          <div class="overflow-hidden mb-6 border border-white/10">
+            <img src="img/bl-2.png" alt="Exploring Tourbillon" class="w-full h-64 object-cover group-hover:scale-105 transition-all duration-700" />
+          </div>
+          <div class="flex items-center gap-4 text-xs text-gray-500 mb-3 uppercase tracking-widest">
+            <span style="color: var(--brand-red)">Omega</span>
+            <span>Oct 15, 2025</span>
+          </div>
+          <h4 class="text-xl font-bold mb-4 transition-colors" onmouseenter="this.style.color='var(--brand-red)'" onmouseleave="this.style.color='white'">Exploring Tourbillon</h4>
+          <span class="text-[10px] font-bold tracking-[0.2em] uppercase border-b border-white/20 pb-1">Read Article</span>
+        </article>
+
+        <!-- Blog 3 -->
+        <article class="group cursor-pointer">
+          <div class="overflow-hidden mb-6 border border-white/10">
+            <img src="img/bl-3.png" alt="Digital Etiquette" class="w-full h-64 object-cover group-hover:scale-105 transition-all duration-700" />
+          </div>
+          <div class="flex items-center gap-4 text-xs text-gray-500 mb-3 uppercase tracking-widest">
+            <span style="color: var(--brand-red)">Omega</span>
+            <span>Oct 10, 2025</span>
+          </div>
+          <h4 class="text-xl font-bold mb-4 transition-colors" onmouseenter="this.style.color='var(--brand-red)'" onmouseleave="this.style.color='white'">Digital Etiquette</h4>
+          <span class="text-[10px] font-bold tracking-[0.2em] uppercase border-b border-white/20 pb-1">Read Article</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-zinc-950 border-t border-white/10 pt-20 pb-10 px-6 lg:px-24">
+    <div class="container mx-auto">
+      <div class="flex flex-col lg:flex-row justify-between items-end mb-16 gap-8">
+        <div class="lg:w-1/2">
+          <h2 class="text-3xl font-bold mb-2">Get Our Latest Update</h2>
+          <p class="text-gray-500 text-sm">Subscribe to our newsletter for exclusive offers.</p>
+        </div>
+        <div class="lg:w-1/2 w-full">
+          <form action="https://formspree.io/f/myyleorq" method="POST" class="flex border-b border-white/20 pb-2">
+            <input type="text" name="email" placeholder="Email Address" class="bg-transparent w-full outline-none text-white placeholder-gray-600" />
+            <button class="text-[10px] font-bold tracking-[0.2em] uppercase transition-colors" onmouseenter="this.style.color='var(--brand-red)'" onmouseleave="this.style.color='white'">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div>
+          <img src="img/f-logo.png" alt="Omega" class="h-8 mb-6 invert" />
+          <p class="text-gray-500 text-sm leading-relaxed mb-6">
+            Excellence in Swiss watchmaking since 1848. Pioneering precision and innovation.
+          </p>
+          <div class="flex gap-4">
+            <a href="#" class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center transition-all" onmouseenter="this.style.borderColor='var(--brand-red)'; this.style.color='var(--brand-red)'" onmouseleave="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.color='white'">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center transition-all" onmouseenter="this.style.borderColor='var(--brand-red)'; this.style.color='var(--brand-red)'" onmouseleave="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.color='white'">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center transition-all" onmouseenter="this.style.borderColor='var(--brand-red)'; this.style.color='var(--brand-red)'" onmouseleave="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.color='white'">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center transition-all" onmouseenter="this.style.borderColor='var(--brand-red)'; this.style.color='var(--brand-red)'" onmouseleave="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.color='white'">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-bold mb-6">Customer Services</h4>
+          <ul class="space-y-4 text-sm text-gray-500">
+            <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Track Orders</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Book Appointment</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">FAQ</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Shipping</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-bold mb-6">Company</h4>
+          <ul class="space-y-4 text-sm text-gray-500">
+            <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Our Products</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Terms & Conditions</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-bold mb-6">Resources</h4>
+          <ul class="space-y-4 text-sm text-gray-500">
+            <li><a href="#" class="hover:text-white transition-colors">Plan & Pricing</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Client Business</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Sales & Purchase</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Product Quality</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 text-center">
+        <p class="text-gray-600 text-sm">
+          <span class="text-white font-bold">Omega © 2025</span> All Rights Reserved
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('load', function() {
+      const mobileVideo = document.getElementById('mobileVideo');
+      const pcVideo = document.getElementById('pcVideo');
+      const mobileStaticBg = document.getElementById('mobileStaticBg');
+      const pcStaticBg = document.getElementById('pcStaticBg');
+
+      // Timer para móvil - 7 segundos
+      setTimeout(() => {
+        if (window.gsap && mobileVideo) {
+          mobileStaticBg.style.display = 'block';
+          
+          gsap.to(mobileVideo, {
+            opacity: 0,
+            duration: 1.8,
+            ease: 'power2.inOut'
+          });
+
+          setTimeout(() => {
+            gsap.fromTo(mobileStaticBg,
+              { opacity: 0, scale: 1.05 },
+              { 
+                opacity: 1, 
+                scale: 1,
+                duration: 2,
+                ease: 'power2.out'
+              }
+            );
+          }, 500);
+        }
+      }, 7000);
+
+      // Timer para PC - 7 segundos
+      setTimeout(() => {
+        if (window.gsap && pcVideo) {
+          pcStaticBg.style.display = 'block';
+          
+          gsap.to(pcVideo, {
+            opacity: 0,
+            duration: 1.8,
+            ease: 'power2.inOut'
+          });
+
+          setTimeout(() => {
+            gsap.fromTo(pcStaticBg,
+              { opacity: 0, scale: 1.05 },
+              { 
+                opacity: 1, 
+                scale: 1,
+                duration: 2,
+                ease: 'power2.out'
+              }
+            );
+          }, 500);
+        }
+      }, 7000);
+    });
+
+    function handleMenuClick(e) {
+      e.preventDefault();
+      const button = e.currentTarget;
+      
+      if (navigator.vibrate) {
+        navigator.vibrate(50);
+      }
+      
+      if (window.gsap) {
+        gsap.to(button, {
+          color: '#e4002b',
+          duration: 0.1,
+          yoyo: true,
+          repeat: 1,
+          ease: 'power2.inOut'
+        });
+      }
+    }
+
+    function handleInactiveLinkClick(e) {
+      e.preventDefault();
+      const link = e.currentTarget;
+      
+      if (navigator.vibrate) {
+        navigator.vibrate(50);
+      }
+      
+      if (window.gsap) {
+        gsap.to(link, {
+          color: '#e4002b',
+          duration: 0.15,
+          yoyo: true,
+          repeat: 1,
+          ease: 'power2.inOut'
+        });
+      }
+    }
+
+    function handleReadMoreClick(e) {
+      e.preventDefault();
+      const nextSection = document.getElementById('nextSection');
+      if (window.gsap && nextSection) {
+        gsap.to(window, {
+          duration: 1.2,
+          scrollTo: { y: nextSection, offsetY: 0 },
+          ease: 'power2.inOut'
+        });
+      }
+    }
+
+    function handleDiscoverClick(e) {
+      e.preventDefault();
+      const nextSection = document.getElementById('nextSection');
+      if (window.gsap && nextSection) {
+        gsap.to(window, {
+          duration: 1.2,
+          scrollTo: { y: nextSection, offsetY: 0 },
+          ease: 'power2.inOut'
+        });
+      }
+    }
+  </script>
+
+</body>
+</html>
