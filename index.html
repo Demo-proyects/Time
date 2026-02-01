@@ -260,137 +260,532 @@ body, html {
     </div>
   </div>
 
-  <section class="relative w-full min-h-screen bg-[#0a0a0a] overflow-hidden font-sans text-gray-300 flex flex-col items-center pt-8 pb-20">
+  <!-- VERSIÓN 4: CARRUSEL PREMIUM CON PROFUNDIDAD Y GLASSMORPHISM -->
+<section class="relative w-full min-h-screen bg-[#0a0a0a] overflow-hidden font-sans text-gray-300 flex flex-col items-center pt-8 pb-20">
   
   <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#1f1f1f] via-[#0a0a0a] to-black z-0"></div>
 
+  <!-- Animated background particles -->
+  <div class="absolute inset-0 z-0" id="particlesCanvas"></div>
+
+  <!-- VERSIÓN DESKTOP -->
   <div class="hidden lg:flex relative z-10 w-full max-w-7xl mx-auto px-4 flex-col items-center">
     
     <div class="flex flex-col items-center mb-8">
-      <div class="text-white mb-1">
-        <svg class="w-8 h-8 mx-auto text-gray-200" fill="currentColor" viewBox="0 0 24 24">
+      <div class="text-white mb-1 relative">
+        <div class="absolute inset-0 blur-xl bg-red-600/20 animate-pulse"></div>
+        <svg class="w-8 h-8 mx-auto text-gray-200 relative z-10" fill="currentColor" viewBox="0 0 24 24">
           <path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z"/>
         </svg>
       </div>
-      <h2 class="text-3xl font-bold tracking-[0.2em] text-white">CARREN</h2>
+      <h2 class="text-3xl font-bold tracking-[0.2em] text-white relative">
+        OMEGA
+        <div class="absolute -bottom-1 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-600 to-transparent"></div>
+      </h2>
     </div>
 
-    <nav class="w-full border-b border-gray-800 border-opacity-50 mb-16">
+    <nav class="w-full border-b border-gray-800 border-opacity-50 mb-16 relative">
+      <div class="absolute -bottom-px left-0 h-px bg-gradient-to-r from-transparent via-red-600/50 to-transparent transition-all duration-500" style="width: 12.5%; left: 37.5%;"></div>
       <ul class="flex justify-center items-end gap-0 text-[10px] sm:text-xs font-semibold tracking-wider text-gray-400">
-        <li class="px-6 py-3 cursor-pointer hover:text-white transition-colors">ANASAYFA</li>
-        <li class="px-6 py-3 cursor-pointer hover:text-white transition-colors">HAKKIMIZDA</li>
-        <li class="px-6 py-3 cursor-pointer hover:text-white transition-colors">YENI BAYAN MODELLER</li>
-        <li class="relative">
-          <div class="bg-gradient-to-b from-red-800 to-red-900 text-white px-6 py-3 shadow-[0_0_15px_rgba(220,38,38,0.3)] clip-path-polygon">
-            YENI ERKEK MODELLER
+        <li data-watch="0" class="watch-nav-item px-6 py-3 cursor-pointer hover:text-white transition-all duration-300 relative group">
+          ANASAYFA
+          <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-red-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+        </li>
+        <li data-watch="1" class="watch-nav-item px-6 py-3 cursor-pointer hover:text-white transition-all duration-300 relative group">
+          HAKKIMIZDA
+          <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-red-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+        </li>
+        <li data-watch="2" class="watch-nav-item px-6 py-3 cursor-pointer hover:text-white transition-all duration-300 relative group">
+          YENI BAYAN MODELLER
+          <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-red-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+        </li>
+        <li data-watch="3" class="watch-nav-item relative active-watch">
+          <div class="bg-gradient-to-b from-red-800 to-red-900 text-white px-6 py-3 shadow-[0_0_15px_rgba(220,38,38,0.3)] relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-t from-white/5 to-transparent"></div>
+            <span class="relative z-10">YENI ERKEK MODELLER</span>
           </div>
           <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-red-900"></div>
         </li>
-        <li class="px-6 py-3 cursor-pointer hover:text-white transition-colors">SAATLER</li>
-        <li class="px-6 py-3 cursor-pointer hover:text-white transition-colors">GARANTI</li>
-        <li class="px-6 py-3 cursor-pointer hover:text-white transition-colors">TANITIM FILMI</li>
-        <li class="px-6 py-3 cursor-pointer hover:text-white transition-colors">ILETISIM</li>
+        <li data-watch="4" class="watch-nav-item px-6 py-3 cursor-pointer hover:text-white transition-all duration-300 relative group">
+          SAATLER
+          <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-red-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+        </li>
+        <li data-watch="5" class="watch-nav-item px-6 py-3 cursor-pointer hover:text-white transition-all duration-300 relative group">
+          GARANTI
+          <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-red-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+        </li>
+        <li data-watch="6" class="watch-nav-item px-6 py-3 cursor-pointer hover:text-white transition-all duration-300 relative group">
+          TANITIM FILMI
+          <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-red-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+        </li>
+        <li data-watch="7" class="watch-nav-item px-6 py-3 cursor-pointer hover:text-white transition-all duration-300 relative group">
+          ILETISIM
+          <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-red-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+        </li>
       </ul>
     </nav>
 
-    <div class="flex items-center justify-center gap-4 sm:gap-8 w-full">
-      <button class="group p-2 focus:outline-none">
-        <svg class="w-12 h-12 text-red-700 group-hover:text-red-500 transition-colors filter drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div class="flex items-center justify-center gap-8 w-full mb-12">
+      <button id="prevBtn" class="group p-3 focus:outline-none z-30 relative bg-white/5 backdrop-blur-sm rounded-full border border-white/10 hover:border-red-600/50 hover:bg-red-900/20 transition-all">
+        <svg class="w-8 h-8 text-red-700 group-hover:text-red-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7"></path>
         </svg>
       </button>
 
-      <div class="flex items-end justify-center gap-6 sm:gap-10">
-        <div class="flex flex-col items-center opacity-60 transform scale-90 transition-all duration-300">
-          <img src="reloges/omega-seamaster-aqua-terra-150m-co-axial-master-chronometer- (1).png" alt="PRS 300" class="h-40 object-contain drop-shadow-xl">
-          <span class="mt-4 text-[10px] tracking-widest text-gray-500 font-bold uppercase">PRS 300</span>
-        </div>
-
-        <div class="relative flex flex-col items-center transform scale-110 z-20 mx-4">
-          <div class="absolute -inset-4 border border-red-600 rounded-xl bg-gradient-to-b from-transparent to-red-900/10 pointer-events-none"></div>
-          <img src="reloges/omega-seamaster-diver-300m-co-axial-master-chronometer-42-mm.png" alt="PRS 516" class="h-48 object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]">
-          <span class="mt-6 text-[10px] tracking-widest text-red-600 font-bold uppercase">PRS 516 AUTOMATIC</span>
-        </div>
-
-        <div class="flex flex-col items-center opacity-60 transform scale-90 transition-all duration-300">
-          <img src="reloges/omega-seamaster-aqua-terra-150m-co-axial-master-chronometer- (2).png" alt="PRS 200" class="h-40 object-contain drop-shadow-xl">
-          <span class="mt-4 text-[10px] tracking-widest text-gray-500 font-bold uppercase">PRS 200</span>
-        </div>
-
-        <div class="flex flex-col items-center opacity-60 transform scale-90 transition-all duration-300 hidden md:flex">
-          <img src="reloges/omega-seamaster-planet-ocean-600m-co-axial-master-chronomete (1).png" alt="Seastar" class="h-40 object-contain drop-shadow-xl">
-          <span class="mt-4 text-[10px] tracking-widest text-gray-500 font-bold uppercase">SEASTAR 1000</span>
+      <div class="relative w-full max-w-5xl h-80">
+        <!-- Center spotlight -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-red-600/10 rounded-full blur-3xl"></div>
+        
+        <div class="carousel-premium-container relative h-full flex items-center justify-center" id="carouselPremium">
+          <!-- Items dinámicos -->
         </div>
       </div>
 
-      <button class="group p-2 focus:outline-none">
-        <svg class="w-12 h-12 text-red-700 group-hover:text-red-500 transition-colors filter drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <button id="nextBtn" class="group p-3 focus:outline-none z-30 relative bg-white/5 backdrop-blur-sm rounded-full border border-white/10 hover:border-red-600/50 hover:bg-red-900/20 transition-all">
+        <svg class="w-8 h-8 text-red-700 group-hover:text-red-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path>
         </svg>
       </button>
     </div>
 
-    <div class="flex justify-center items-center gap-3 mt-12">
-      <button class="w-3 h-3 rounded-full bg-[#1a1a1a] hover:bg-gray-600 transition-colors"></button>
-      <button class="w-3 h-3 rounded-full bg-[#1a1a1a] hover:bg-gray-600 transition-colors"></button>
-      <button class="w-3 h-3 rounded-full bg-red-800 shadow-[0_0_8px_rgba(220,38,38,0.5)]"></button>
-      <button class="w-3 h-3 rounded-full bg-[#1a1a1a] hover:bg-gray-600 transition-colors"></button>
-      <button class="w-3 h-3 rounded-full bg-[#1a1a1a] hover:bg-gray-600 transition-colors"></button>
+    <!-- Progress bar -->
+    <div class="w-full max-w-md h-1 bg-white/5 rounded-full overflow-hidden mb-4">
+      <div class="h-full bg-gradient-to-r from-red-600 to-red-800 transition-all duration-300" id="progressBar" style="width: 37.5%"></div>
     </div>
+
+    <div class="flex justify-center items-center gap-3" id="desktopDots"></div>
   </div>
 
+  <!-- VERSIÓN MÓVIL -->
   <div class="lg:hidden w-full flex flex-col items-center justify-center pt-6 pb-2 px-6 z-30 text-center">
-    <img src="img/logo.png" class="h-8 object-contain mb-3 drop-shadow-md">
+    <img src="img/logo.png" class="h-16 object-contain mb-3 drop-shadow-md">
     
     <h2 class="text-lg font-bold text-white tracking-[0.2em] uppercase font-serif">MENS COLLECTION</h2>
     <div class="w-8 h-0.5 bg-red-800 mx-auto my-2"></div>
     <p class="text-[14px] text-gray-400 max-w-[280px] leading-relaxed">
         Explora la nueva serie de precisión y diseño exclusivo.
     </p>
-</div>
+  </div>
 
   <div class="lg:hidden w-full h-full flex flex-col relative z-20">
-    
     <div class="absolute top-6 left-0 w-full text-center z-20 pointer-events-none">
-        <h2 class="text-4xl font-bold text-white/5 tracking-[0.4em] uppercase">CARREN</h2>
+        <h2 class="text-4xl font-bold text-white/5 tracking-[0.4em] uppercase">OMEGA</h2>
     </div>
 
-    <div class="flex-1 flex flex-col items-center justify-center relative px-4 min-h-[60vh]">
-        <div class="absolute w-64 h-64 border border-red-900/30 rounded-full animate-[spin_10s_linear_infinite]"></div>
+    <div class="flex-1 flex flex-col items-center justify-center relative px-4 min-h-[60vh]" id="mobileContainer">
+        <div class="absolute w-64 h-64 border border-red-900/30 rounded-full" style="animation: spin 10s linear infinite;"></div>
         <div class="absolute w-56 h-56 border border-white/5 rounded-full"></div>
+        <div class="absolute w-48 h-48 bg-red-600/5 rounded-full blur-2xl"></div>
         
-        <img src="reloges/omega-seamaster-diver-300m-co-axial-master-chronometer-42-mm.png" class="h-[35vh] object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.7)] z-10">
+        <div class="relative bg-white/5 backdrop-blur-sm rounded-3xl p-6 border border-white/10">
+          <img src="" alt="" class="mobile-watch-img h-[30vh] object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.7)] z-10" style="transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);">
+        </div>
         
         <div class="text-center mt-8 z-10">
-            <h3 class="text-3xl text-white font-bold font-serif">PRS 516</h3>
-            <p class="text-red-500 text-xs font-bold tracking-[0.3em] uppercase mt-2">Sport Collection</p>
-            <p class="text-gray-500 text-xs mt-4 max-w-xs mx-auto">Cristal de zafiro irrayable con revestimiento antirreflejos.</p>
+            <h3 class="mobile-watch-title text-2xl text-white font-bold font-serif mb-2" style="transition: all 0.5s ease;"></h3>
+            <div class="flex items-center justify-center gap-2 mb-2">
+              <div class="w-1 h-1 rounded-full bg-red-600"></div>
+              <p class="text-red-500 text-xs font-bold tracking-[0.3em] uppercase">Sport Collection</p>
+              <div class="w-1 h-1 rounded-full bg-red-600"></div>
+            </div>
+            <p class="mobile-watch-desc text-gray-400 text-xs mt-3 max-w-xs mx-auto" style="transition: all 0.5s ease;"></p>
+        </div>
+
+        <!-- Mobile navigation -->
+        <div class="absolute left-4 right-4 top-1/3 flex justify-between z-30">
+          <button id="mobilePrev" class="bg-black/40 backdrop-blur-md p-3 rounded-full border border-white/20 hover:bg-red-900/40 active:scale-95 transition-all shadow-xl">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+          <button id="mobileNext" class="bg-black/40 backdrop-blur-md p-3 rounded-full border border-white/20 hover:bg-red-900/40 active:scale-95 transition-all shadow-xl">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
         </div>
     </div>
 
-    <div class="w-full bg-black py-6 mt-auto">
-    <div class="flex items-center gap-4 px-6 overflow-x-auto no-scrollbar">
-
-<div class="flex-shrink-0 w-20 h-20 bg-gradient-to-b from-[#1a1a1a] to-black rounded-full border-[0.5px] border-white/20 flex items-center justify-center relative shadow-none">
-    <div class="absolute inset-[2px] rounded-full border border-red-600/50"></div>
-    <img src="reloges/omega-speedmaster-dark-side-of-the-moon-co-axial-master-chro (4).png" class="h-14 w-14 object-contain">
-</div>
-        <div class="flex-shrink-0 w-20 h-20 relative p-2">
-            <div class="absolute inset-0 border-t-2 border-l-2 border-red-600 w-4 h-4 top-0 left-0"></div>
-            <div class="absolute inset-0 border-b-2 border-r-2 border-red-600 w-4 h-4 bottom-0 right-0"></div>
-            <img src="reloges/omega-seamaster-planet-ocean-600m-co-axial-master-chronomete (3).png" class="h-full object-contain">
-        </div>
-        <div class="flex-shrink-0 w-20 h-20 p-2 border border-white/5 rounded-md">
-            <img src="reloges/omega-seamaster-planet-ocean-600m-co-axial-master-chronomete (6).png" class="h-full object-contain">
-        </div>
-        <div class="flex-shrink-0 w-20 h-20 p-2 border border-white/5 rounded-md">
-            <img src="reloges/omega-seamaster-planet-ocean-600m-co-axial-master-chronomete (7).png" class="h-full object-contain">
-        </div>
+    <div class="w-full bg-black py-6 mt-auto border-t border-white/5">
+      <div class="flex items-center gap-4 px-6 overflow-x-auto no-scrollbar" id="mobileThumbs"></div>
     </div>
-</div>
   </div>
 
 </section>
+
+<style>
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.carousel-item-premium {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+}
+
+.carousel-item-premium .watch-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 2rem;
+  transition: all 0.5s ease;
+}
+
+.carousel-item-premium:hover .watch-card {
+  border-color: rgba(220, 38, 38, 0.3);
+  box-shadow: 0 20px 60px rgba(220, 38, 38, 0.2);
+}
+
+.carousel-item-premium img {
+  height: 160px;
+  object-fit: contain;
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+}
+
+.carousel-item-premium.active .watch-card {
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(139, 0, 0, 0.05));
+  border-color: rgba(220, 38, 38, 0.5);
+  box-shadow: 0 25px 70px rgba(220, 38, 38, 0.3);
+  transform: scale(1.05);
+}
+
+.carousel-item-premium.active img {
+  transform: translateY(-10px) scale(1.1);
+  filter: drop-shadow(0 15px 40px rgba(220, 38, 38, 0.4));
+}
+
+.carousel-item-premium .watch-label {
+  margin-top: 1.5rem;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #6b7280;
+  transition: all 0.4s ease;
+}
+
+.carousel-item-premium.active .watch-label {
+  color: #dc2626;
+  font-weight: 700;
+  font-size: 10px;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+.carousel-item-premium.active {
+  animation: float 3s ease-in-out infinite;
+}
+</style>
+
+<script>
+const watches = [
+  { img: "reloges/omega-seamaster-aqua-terra-150m-co-axial-master-chronometer- (1).png", name: "AQUA TERRA 150M", desc: "Cristal de zafiro irrayable con revestimiento antirreflejos." },
+  { img: "reloges/omega-speedmaster-dark-side-of-the-moon-co-axial-master-chro (1).png", name: "DARK SIDE MOON", desc: "Cerámica negra de alta tecnología con movimiento co-axial." },
+  { img: "reloges/omega-seamaster-planet-ocean-600m-co-axial-master-chronomete (1).png", name: "PLANET OCEAN 600M", desc: "Resistencia al agua hasta 600 metros de profundidad." },
+  { img: "reloges/omega-seamaster-diver-300m-co-axial-master-chronometer-42-mm.png", name: "SEAMASTER DIVER 300M", desc: "El reloj de buceo icónico con tecnología Master Chronometer." },
+  { img: "reloges/omega-speedmaster-38-co-axial-chronometer-chronograph-38-mm-.png", name: "SPEEDMASTER 38", desc: "Elegancia deportiva en un tamaño más compacto." },
+  { img: "reloges/omega-seamaster-railmaster-co-axial-master-chronometer-38-mm.png", name: "RAILMASTER 38MM", desc: "Antimagnético hasta 15,000 gauss para profesionales." },
+  { img: "reloges/omega-seamaster-aqua-terra-shades-co-axial-master-chronomete.png", name: "AQUA TERRA SHADES", desc: "Edición especial con esfera degradada única." },
+  { img: "reloges/omega-speedmaster-moonwatch-professional-co-axial-master-chr.png", name: "MOONWATCH PRO", desc: "El legendario reloj que fue a la Luna." }
+];
+
+let currentIndex = 3;
+
+function init() {
+  createParticles();
+  createCarouselPremium();
+  updateMobileCarousel();
+  initNavigation();
+  initDots();
+  initMobileThumbs();
+  startAutoplay();
+  updateProgressBar();
+}
+
+function createParticles() {
+  const canvas = document.getElementById('particlesCanvas');
+  if (!canvas) return;
+  
+  for (let i = 0; i < 30; i++) {
+    const particle = document.createElement('div');
+    particle.style.position = 'absolute';
+    particle.style.width = Math.random() * 3 + 1 + 'px';
+    particle.style.height = particle.style.width;
+    particle.style.background = 'rgba(220, 38, 38, 0.3)';
+    particle.style.borderRadius = '50%';
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.top = Math.random() * 100 + '%';
+    particle.style.animation = `float ${Math.random() * 10 + 5}s ease-in-out infinite`;
+    particle.style.animationDelay = Math.random() * 5 + 's';
+    canvas.appendChild(particle);
+  }
+}
+
+function createCarouselPremium() {
+  const container = document.getElementById('carouselPremium');
+  if (!container) return;
+
+  container.innerHTML = watches.map((watch, i) => `
+    <div class="carousel-item-premium ${i === currentIndex ? 'active' : ''}" data-index="${i}">
+      <div class="watch-card">
+        <img src="${watch.img}" alt="${watch.name}">
+      </div>
+      <span class="watch-label">${watch.name}</span>
+    </div>
+  `).join('');
+
+  updateCarouselPremium();
+}
+
+function updateCarouselPremium() {
+  const items = document.querySelectorAll('.carousel-item-premium');
+  const radius = 350;
+  const centerX = 0;
+  const centerY = 0;
+  
+  items.forEach((item, i) => {
+    const offset = i - currentIndex;
+    const angle = (offset * (360 / watches.length)) * (Math.PI / 180);
+    
+    const x = centerX + radius * Math.sin(angle);
+    const y = centerY - radius * 0.3 * Math.cos(angle);
+    const z = radius * Math.cos(angle);
+    
+    const scale = (z + radius) / (radius * 2) * 0.6 + 0.4;
+    const opacity = Math.max(0, (z + radius) / (radius * 2));
+    
+    item.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+    item.style.opacity = i === currentIndex ? 1 : opacity * 0.5;
+    item.style.zIndex = Math.round(z + radius);
+    
+    if (i === currentIndex) {
+      item.classList.add('active');
+    } else {
+      item.classList.remove('active');
+    }
+  });
+
+  updateActiveDot();
+  updateProgressBar();
+}
+
+function updateProgressBar() {
+  const progress = document.getElementById('progressBar');
+  if (progress) {
+    const percentage = ((currentIndex + 1) / watches.length) * 100;
+    progress.style.width = percentage + '%';
+  }
+}
+
+function updateMobileCarousel() {
+  const img = document.querySelector('.mobile-watch-img');
+  const title = document.querySelector('.mobile-watch-title');
+  const desc = document.querySelector('.mobile-watch-desc');
+
+  if (img && title && desc) {
+    img.style.transform = 'scale(0) rotate(-180deg)';
+    title.style.transform = 'translateY(20px)';
+    desc.style.transform = 'translateY(20px)';
+    img.style.opacity = '0';
+    title.style.opacity = '0';
+    desc.style.opacity = '0';
+    
+    setTimeout(() => {
+      img.src = watches[currentIndex].img;
+      img.alt = watches[currentIndex].name;
+      title.textContent = watches[currentIndex].name;
+      desc.textContent = watches[currentIndex].desc;
+      
+      setTimeout(() => {
+        img.style.transform = 'scale(1) rotate(0deg)';
+        title.style.transform = 'translateY(0)';
+        desc.style.transform = 'translateY(0)';
+        img.style.opacity = '1';
+        title.style.opacity = '1';
+        desc.style.opacity = '1';
+      }, 50);
+    }, 350);
+  }
+
+  updateMobileThumbs();
+}
+
+function initNavigation() {
+  const prev = () => {
+    currentIndex = (currentIndex - 1 + watches.length) % watches.length;
+    updateCarouselPremium();
+    updateMobileCarousel();
+    updateActiveNav();
+    resetAutoplay();
+  };
+
+  const next = () => {
+    currentIndex = (currentIndex + 1) % watches.length;
+    updateCarouselPremium();
+    updateMobileCarousel();
+    updateActiveNav();
+    resetAutoplay();
+  };
+
+  ['prevBtn', 'mobilePrev'].forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) btn.addEventListener('click', prev);
+  });
+
+  ['nextBtn', 'mobileNext'].forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) btn.addEventListener('click', next);
+  });
+
+  document.querySelectorAll('.watch-nav-item').forEach(item => {
+    item.addEventListener('click', () => {
+      currentIndex = parseInt(item.dataset.watch);
+      updateCarouselPremium();
+      updateMobileCarousel();
+      updateActiveNav();
+      resetAutoplay();
+    });
+  });
+
+  // Swipe mobile
+  let touchStartX = 0;
+  const container = document.getElementById('mobileContainer');
+  if (container) {
+    container.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
+    container.addEventListener('touchend', e => {
+      const diff = touchStartX - e.changedTouches[0].screenX;
+      if (Math.abs(diff) > 50) diff > 0 ? next() : prev();
+    });
+  }
+}
+
+function updateActiveNav() {
+  document.querySelectorAll('.watch-nav-item').forEach((item, i) => {
+    if (i === currentIndex) {
+      if (!item.classList.contains('active-watch')) {
+        item.classList.add('active-watch');
+        const text = item.textContent.trim();
+        item.innerHTML = `
+          <div class="bg-gradient-to-b from-red-800 to-red-900 text-white px-6 py-3 shadow-[0_0_15px_rgba(220,38,38,0.3)] relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-t from-white/5 to-transparent"></div>
+            <span class="relative z-10">${text}</span>
+          </div>
+          <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-red-900"></div>
+        `;
+      }
+    } else {
+      item.classList.remove('active-watch');
+      const text = item.textContent.trim();
+      item.innerHTML = `${text}<div class="absolute bottom-0 left-0 right-0 h-0.5 bg-red-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>`;
+      item.className = 'watch-nav-item px-6 py-3 cursor-pointer hover:text-white transition-all duration-300 relative group';
+      item.dataset.watch = i;
+    }
+  });
+}
+
+function initDots() {
+  const container = document.getElementById('desktopDots');
+  if (!container) return;
+
+  container.innerHTML = watches.map((_, i) => 
+    `<button class="dot w-2.5 h-2.5 rounded-full transition-all duration-300 ${i === currentIndex ? 'bg-red-800 shadow-[0_0_12px_rgba(220,38,38,0.6)] w-8' : 'bg-[#1a1a1a] hover:bg-gray-600'}" data-index="${i}"></button>`
+  ).join('');
+
+  container.querySelectorAll('.dot').forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      currentIndex = i;
+      updateCarouselPremium();
+      updateMobileCarousel();
+      updateActiveNav();
+      resetAutoplay();
+    });
+  });
+}
+
+function updateActiveDot() {
+  document.querySelectorAll('.dot').forEach((dot, i) => {
+    dot.className = i === currentIndex 
+      ? 'dot w-8 h-2.5 rounded-full bg-red-800 shadow-[0_0_12px_rgba(220,38,38,0.6)] transition-all duration-300'
+      : 'dot w-2.5 h-2.5 rounded-full bg-[#1a1a1a] hover:bg-gray-600 transition-all duration-300';
+  });
+}
+
+function initMobileThumbs() {
+  const container = document.getElementById('mobileThumbs');
+  if (!container) return;
+
+  const mobileThumbsHTML = watches.map((watch, i) => {
+  const isActive = i === currentIndex;
+  const baseClasses = 'mobile-thumb flex-shrink-0 w-20 h-20 flex items-center justify-center relative transition-all duration-500 cursor-pointer';
+  const bgClasses = isActive
+    ? 'bg-gradient-to-br from-gray-900/50 to-black/40 backdrop-blur-md'
+    : 'bg-gradient-to-br from-gray-900/25 to-black/15 backdrop-blur-sm';
+  
+  return `
+    <div class="${baseClasses}" style="clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);">
+      <div class="${bgClasses} absolute inset-[2px]" style="clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);">
+        ${isActive ? '<div class="absolute inset-0 border border-red-900/30" style="clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);"></div>' : ''}
+        <div class="absolute inset-0 flex items-center justify-center p-2">
+          <img src="${watch.img}" class="w-14 h-14 object-contain transition-all duration-300 ${isActive ? 'scale-110 brightness-110' : 'brightness-75'}">
+        </div>
+      </div>
+    </div>
+  `;
+}).join('');
+
+  container.innerHTML = mobileThumbsHTML;
+  container.querySelectorAll('.mobile-thumb').forEach((thumb, i) => {
+    thumb.addEventListener('click', () => {
+      currentIndex = i;
+      updateCarouselPremium();
+      updateMobileCarousel();
+      updateActiveNav();
+      resetAutoplay();
+    });
+  });
+}
+
+function updateMobileThumbs() {
+  const container = document.getElementById('mobileThumbs');
+  if (!container) return;
+
+  container.querySelectorAll('.mobile-thumb').forEach((thumb, i) => {
+    thumb.className = i === currentIndex
+      ? 'mobile-thumb flex-shrink-0 w-20 h-20 bg-gradient-to-br from-red-900/40 to-black/40 backdrop-blur-md rounded-2xl border border-red-600/50 shadow-lg shadow-red-900/30 flex items-center justify-center relative p-2 cursor-pointer transition-all duration-300 hover:scale-105'
+      : 'mobile-thumb flex-shrink-0 w-20 h-20 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg flex items-center justify-center relative p-2 cursor-pointer transition-all duration-300 hover:scale-105';
+  });
+}
+
+let autoplayInterval;
+function startAutoplay() {
+  autoplayInterval = setInterval(() => {
+    currentIndex = (currentIndex + 1) % watches.length;
+    updateCarouselPremium();
+    updateMobileCarousel();
+    updateActiveNav();
+  }, 5000);
+}
+
+function resetAutoplay() {
+  clearInterval(autoplayInterval);
+  startAutoplay();
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
 
   <!-- 1. About Section -->
   <section class="bg-black py-24 px-6 lg:px-24">
